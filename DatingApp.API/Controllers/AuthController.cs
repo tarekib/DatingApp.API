@@ -28,6 +28,13 @@ namespace DatingApp.API.Controllers
             _config = config;
         }
 
+        [HttpGet]
+        public string Get()
+        {
+            return "success";
+        }
+
+        [Route("Register")]
         [HttpPost]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
@@ -47,6 +54,7 @@ namespace DatingApp.API.Controllers
             return StatusCode(201);
         }
 
+        [Route("Login")]
         [HttpPost]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
