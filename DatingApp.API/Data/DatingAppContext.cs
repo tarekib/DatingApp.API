@@ -31,5 +31,7 @@ namespace DatingApp.API.Models
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Photo> Photos { get; set; }
     }
 }

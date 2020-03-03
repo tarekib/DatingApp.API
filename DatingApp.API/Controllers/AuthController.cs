@@ -8,9 +8,12 @@ using System.Threading.Tasks;
 using DatingApp.API.Data;
 using DatingApp.API.DTOs;
 using DatingApp.API.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
 namespace DatingApp.API.Controllers
@@ -32,6 +35,14 @@ namespace DatingApp.API.Controllers
         public string Get()
         {
             return "success";
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        // this is only used for running our application manually
+        public string LaunchApplication()
+        {
+            return "Hello World";
         }
 
         [Route("Register")]
