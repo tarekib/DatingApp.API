@@ -15,15 +15,20 @@ namespace DatingApp.API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        #region Private Fields
         private readonly IDatingRepository _repo;
         private readonly IMapper _mapper;
+        #endregion
 
+        #region Constructor
         public UsersController(IDatingRepository repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
         }
+        #endregion
 
+        #region Api Services
         [Route("GetUsers")]
         [HttpGet]
         public async Task<IActionResult> GetUsers()
@@ -40,5 +45,6 @@ namespace DatingApp.API.Controllers
             var userToReturn = _mapper.Map<UserDetailedDto>(user);
             return Ok(userToReturn);
         }
+        #endregion
     }
 }

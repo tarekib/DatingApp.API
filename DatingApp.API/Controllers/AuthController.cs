@@ -22,15 +22,20 @@ namespace DatingApp.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        #region Private Fields 
         private readonly IAuthRepository _repo;
         private readonly IConfiguration _config;
+        #endregion
 
+        #region Constructor
         public AuthController(IAuthRepository repo, IConfiguration config)
         {
             _repo = repo;
             _config = config;
         }
+        #endregion
 
+        #region Api Services
         [HttpGet]
         public string Get()
         {
@@ -97,5 +102,6 @@ namespace DatingApp.API.Controllers
                 token = tokenHandler.WriteToken(token)
             });
         }
+        #endregion
     }
 }
