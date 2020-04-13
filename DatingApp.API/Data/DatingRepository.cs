@@ -9,13 +9,18 @@ namespace DatingApp.API.Data
 {
     public class DatingRepository : IDatingRepository
     {
+        #region Private Fields
         private readonly DatingAppContext _context;
+        #endregion
 
+        #region Constructor
         public DatingRepository(DatingAppContext context)
         {
             _context = context;
         }
+        #endregion
 
+        #region Public Methods
         public void Add<T>(T entity) where T : class
         {
             _context.Add(entity);
@@ -24,6 +29,11 @@ namespace DatingApp.API.Data
         public void Delete<T>(T entity) where T : class
         {
             _ = _context.Remove(entity);
+        }
+
+        public async Task<Photo> GetPhoto(int id)
+        {
+            return await _context.Photos.FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<User> GetUser(int id)
@@ -42,5 +52,6 @@ namespace DatingApp.API.Data
         {
             return await _context.SaveChangesAsync() > 0;
         }
+        #endregion
     }
 }
