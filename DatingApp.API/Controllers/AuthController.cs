@@ -98,7 +98,8 @@ namespace DatingApp.API.Controllers
             var user = _mapper.Map<UserForListDto>(userFromRepo);
             return Ok(new
             {
-                token = tokenHandler.WriteToken(token)
+                token = tokenHandler.WriteToken(token),
+                user 
             });
         }
         #endregion
