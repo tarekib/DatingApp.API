@@ -53,8 +53,7 @@ namespace DatingApp.API.Controllers
             return "Hello World";
         }
 
-        [Route("Register")]
-        [HttpPost]
+        [HttpPost("Register")]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
             //validate request
@@ -69,8 +68,7 @@ namespace DatingApp.API.Controllers
             return CreatedAtRoute("GetUser", new { controller = "Users", id = createdUser.Id }, userToReturn);
         }
 
-        [Route("Login")]
-        [HttpPost]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
             var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
