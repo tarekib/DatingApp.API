@@ -15,7 +15,7 @@ namespace DatingApp.API.Data
 
         Task<bool> SaveAll();
 
-        Task<PagedList<User>> GetUsers(int pageNumber, int countPerPage);
+        Task<PagedList<User>> GetUsers(int pageNumber, int countPerPage, int userId, string gender, int minAge, int maxAge);
 
         Task<User> GetUser(int id);
 
