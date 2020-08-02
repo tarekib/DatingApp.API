@@ -34,7 +34,7 @@ namespace DatingApp.API.Controllers
         #region Api Services
         [Route("GetUsers")]
         [HttpGet]
-        public async Task<IActionResult> GetUsers(int pageNumber, int pageSize, int userId, string gender, int minAge = 18, int maxAge = 99)
+        public async Task<IActionResult> GetUsers(int userId, string gender, int pageNumber = 1, int pageSize= 5, int minAge = 18, int maxAge = 99, bool likees = false, bool likers = false)
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
             var userFromRepo = await _repo.GetUser(currentUserId);
@@ -44,7 +44,7 @@ namespace DatingApp.API.Controllers
                 gender = userFromRepo.Gender == "male" ? "female" : "male";
             }
 
-            var users = await _repo.GetUsers(pageNumber, pageSize, userId, gender, minAge , maxAge);
+            var users = await _repo.GetUsers(pageNumber, pageSize, userId, gender, minAge , maxAge, likees, likers);
             var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
             Response.AddPagination(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
             return Ok(usersToReturn);
